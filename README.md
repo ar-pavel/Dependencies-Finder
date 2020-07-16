@@ -1,6 +1,5 @@
 # Dependencies Finder
 
-
 This program accepts information contained in a file about
 the class dependencies in a Java program and creates a directed graph from that information. From the directed
 graph, it produces two different kinds of displays of those dependency relationships.
@@ -21,7 +20,7 @@ ClassI      ClassC
 
 ### Output
 
-***Format A:***
+- ***Format A:***
 ```$xslt
 ClassA
 	ClassC *
@@ -39,7 +38,9 @@ ClassA
 *The asterisk after ClassC results from the fact that ClassC depends upon ClassA and ClassC depends upon
  ClassA .*
 
-***Format B:***
+- ***Format B:***
 ```$xslt
 ( ClassA ( ClassC * ClassE ( ClassB ( ClassD ClassG ) ClassF ClassH ) ClassJ ( ClassB ( ClassD ClassG ))))
 ```
+
+`ClassI is unreachable`
