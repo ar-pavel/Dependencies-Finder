@@ -41,6 +41,5 @@ ClassA
 
 ***Format B:***
 ```$xslt
-( ClassA ( ClassC * ClassE ( ClassB ( ClassD ClassG ) ClassF ClassH ) ClassJ (
-ClassB ( ClassD ClassG ))))
+( ClassA ( ClassC * ClassE ( ClassB ( ClassD ClassG ) ClassF ClassH ) ClassJ ( ClassB ( ClassD ClassG ))))
 ```
