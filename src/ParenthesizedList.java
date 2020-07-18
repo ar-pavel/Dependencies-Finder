@@ -2,6 +2,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class ParenthesizedList implements DFSActions<Vertex> {
+
+    // This class maintain a Queue to trace orders of the nodes and their dependent nodes with proper spacing format
+
 //    Deque<Pair<String> res = new LinkedList<>();
 
     Queue<String> res = new LinkedList<>();
