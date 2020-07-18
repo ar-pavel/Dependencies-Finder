@@ -1,26 +1,54 @@
 import javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Main {
 
-    public static String readFile(){
+    static DirectedGraph graph = new DirectedGraph();
 
-        JFileChooser fileChooser = new JFileChooser();
 
-        int r = fileChooser.showSaveDialog(null);
+    public void readGraph() {
 
-        while(r != JFileChooser.APPROVE_OPTION){
-            r = fileChooser.showSaveDialog(null);
-            System.err.println("Select the input file: ");
+        JFileChooser choice = new JFileChooser(new File("."));
+        int option = choice.showOpenDialog(null);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            try {
+                Scanner input = new Scanner(choice.getSelectedFile());
+                while (input.hasNextLine()) {
+                    String edgeString = input.nextLine();
+                    String[] edge = edgeString.split(" ");
+
+                    if (graph.startingNode == null)
+                        graph.startingNode = graph.getVertex(edge[0]);
+
+                    for (int i = 1; i < edge.length; i++) {
+//                        System.out.println(graph.adjacencyList.get(edge[0]));
+                        graph.addEdge(edge[0], edge[i]);
+//                        System.out.println(edge[0] + "\t" + edge[i]);
+                    }
+
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        String path= fileChooser.getSelectedFile().getAbsolutePath();
 
-        return path;
+
     }
 
 
     public static void main(String[] args) {
-        String file = readFile();
-        System.out.println(file);
+
+        new Main().readGraph();
+        graph.depthFirstSearch();
+
+
+        System.out.println(graph.parenthesizedList.toString());
+        System.out.println(graph.hierarchy.toString());
+
+        graph.displayUnreachableClasses();
+
 
     }
 }

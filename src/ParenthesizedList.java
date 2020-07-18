@@ -1,7 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Hierarchy implements DFSActions<Vertex> {
+public class ParenthesizedList implements DFSActions<Vertex> {
+//    Deque<Pair<String> res = new LinkedList<>();
 
     Queue<String> res = new LinkedList<>();
 
@@ -18,7 +19,6 @@ public class Hierarchy implements DFSActions<Vertex> {
     @Override
     public void ascendVertex(Vertex vertex) {
         res.add(")");
-
     }
 
     @Override
@@ -30,9 +30,7 @@ public class Hierarchy implements DFSActions<Vertex> {
     public String toString() {
 
         String ans = "";
-
-        int sz = 0;
-
+        ans += "( ";
         while (res.size() > 0) {
             String c = res.peek();
             res.remove();
@@ -47,54 +45,16 @@ public class Hierarchy implements DFSActions<Vertex> {
                     res.remove();
                     continue;
                 }
+
             }
-
-            if(c=="(")
-                sz++;
-            else if(c==")")
-                --sz;
-
-            if(c=="(" || c==")")
-                continue;
-
-            if(c!="*")
-                ans += "\n";
-
-            for (int i = 0; i < sz; i++) {
-                ans += "\t";
-            }
-
-
-            ans += c + " " ;
+            ans += c + " ";
 
         }
-        ans += "\n";
 
-
-//        String[] line = ans.split(" ");
-//
-//        int sz = 0;
-//        for (String s: line) {
-//            if(s=="("){
-//                ++sz;
-//                continue;
-//            }else if(s==")"){
-//                --sz;
-//                continue;
-//            }
-//            if(isAlpha(s))
-//                System.out.println(s==")");
-//        }
+        ans += ")\n";
 
         return ans;
 
 
-//        return "ParenthesizedList{"
-//                 + res +
-//                "}";
-    }
-
-    private boolean isAlpha(String s) {
-        return s != "(" && s != ")";
     }
 }
